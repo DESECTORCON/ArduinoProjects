@@ -1,0 +1,244 @@
+1542436981722	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.20lEwVT6pTiA"
+1542436985740	Marionette	INFO	Listening on port 51630
+1542436985822	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://browser/content/urlbarBindings.xml, line 2709: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIAutoCompleteController.getStyleAt]
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8375, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437033925	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.Ox35oOQ9Ysrg"
+1542437036677	Marionette	INFO	Listening on port 51711
+1542437036687	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://browser/content/urlbarBindings.xml, line 2709: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIAutoCompleteController.getStyleAt]
+JavaScript error: resource://gre/modules/WebProgressChild.jsm, line 58: TypeError: this.mm.content is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8399, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437124127	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.pglX3jT6J6iB"
+1542437127130	Marionette	INFO	Listening on port 51911
+1542437127217	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8417, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+1542437167486	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.H6et17OenZs5"
+1542437170457	Marionette	INFO	Listening on port 51969
+1542437170539	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://browser/content/urlbarBindings.xml, line 2709: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIAutoCompleteController.getStyleAt]
+JavaScript error: chrome://global/content/elements/textbox.js, line 156: TypeError: controller is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437214365	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.peY2WL5N53Sv"
+1542437217309	Marionette	INFO	Listening on port 52029
+1542437217426	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542437232969	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.qMvxkoasOJRo"
+1542437235971	Marionette	INFO	Listening on port 52085
+1542437236043	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://browser/content/urlbarBindings.xml, line 2709: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIAutoCompleteController.getStyleAt]
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8474, Chrome_ChildThread] WARNING: pipe error: Socket is not connected: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437275363	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.qKK8ZBFVzLXK"
+1542437278460	Marionette	INFO	Listening on port 52143
+1542437278544	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8493, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437319840	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.irJxJQ9X5oX4"
+1542437322958	Marionette	INFO	Listening on port 52258
+1542437323023	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437352772	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.IwOuyKW2qbZx"
+1542437355683	Marionette	INFO	Listening on port 52318
+1542437355767	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437372341	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.MNa2KdGeoKA7"
+1542437375283	Marionette	INFO	Listening on port 52372
+1542437375301	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437426960	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.ZdebWNK5CdXk"
+1542437429293	Marionette	INFO	Listening on port 52452
+1542437429317	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Child 8575, MediaPlayback #4] WARNING: Decoder=193a04280 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/workspace/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+[Child 8575, MediaPlayback #1] WARNING: Decoder=193a04280 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/workspace/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+[Child 8575, MediaPlayback #3] WARNING: Decoder=193a04280 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/workspace/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437496066	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.74GUvnnifRm3"
+1542437498473	Marionette	INFO	Listening on port 52601
+1542437498521	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8589, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8587, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+1542437556330	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.zWQFcCoCKria"
+1542437559319	Marionette	INFO	Listening on port 52704
+1542437559398	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542437736696	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.Kvmd1QiztO8N"
+1542437739295	Marionette	INFO	Listening on port 53094
+1542437739407	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8708, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542437914490	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.mnJht1ovqU46"
+1542437917469	Marionette	INFO	Listening on port 53463
+1542437917592	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript error: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: TypeError: this.suggest._element.contentWindow.document.getElementById(...) is null
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8718, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542438237386	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.zJ1chEKffWPH"
+1542438240373	Marionette	INFO	Listening on port 54244
+1542438240473	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8756, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542438466406	Marionette	INFO	Stopped listening on port 52704
+1542438846107	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.ijCMIvyEB4B3"
+1542438848238	Marionette	INFO	Listening on port 54701
+1542438848251	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://browser/content/urlbarBindings.xml, line 2709: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIAutoCompleteController.getStyleAt]
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542439055518	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.DDYsQk4dol0o"
+1542439057757	Marionette	INFO	Listening on port 54886
+1542439057784	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 8885, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542439141762	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.pchiARgTtt31"
+1542439144781	Marionette	INFO	Listening on port 54971
+1542439144833	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542439212181	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.dEke6OJHzZEI"
+1542439215150	Marionette	INFO	Listening on port 55121
+1542439215250	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542439225202	Marionette	INFO	Stopped listening on port 55121
+1542439239211	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.PizPhnbzI3Pp"
+1542439241973	Marionette	INFO	Listening on port 55213
+1542439242063	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542439485646	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.DTx0pDl9DCVY"
+1542439487993	Marionette	INFO	Listening on port 55408
+1542439488106	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+1542439615874	Marionette	INFO	Stopped listening on port 55408
+1542439867771	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.Kg8nJXFe3kJM"
+1542439870556	Marionette	INFO	Listening on port 55600
+1542439870632	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542439901610	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.4ezabaQz9UcI"
+1542439904369	Marionette	INFO	Listening on port 55665
+1542439904417	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9121, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542439995362	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.QRlFLiScZmp9"
+1542439998477	Marionette	INFO	Listening on port 55760
+1542439998594	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9140, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /builds/worker/workspace/build/src/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 729
+1542440379073	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.jIpupWkaGdp0"
+1542440381842	Marionette	INFO	Listening on port 56178
+1542440381957	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542440435647	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.OWoQkFNxFTqO"
+1542440439135	Marionette	INFO	Listening on port 56480
+1542440439235	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542440486526	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.umje0DgILnWR"
+1542440489493	Marionette	INFO	Listening on port 56761
+1542440489515	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542440522628	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.tvv8oCG9Phek"
+1542440525429	Marionette	INFO	Listening on port 56982
+1542440525511	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542440545933	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.KfT7vxUcT4v8"
+1542440548541	Marionette	INFO	Listening on port 57142
+1542440548587	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1542440716880	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.ESt2KpiSjky5"
+1542440719877	Marionette	INFO	Listening on port 57533
+1542440719962	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542440730077	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/h4/kxjz7xw13l949103l6yg16rm0000gn/T/rust_mozprofile.XB1ySl0kQZzi"
+1542440733237	Marionette	INFO	Listening on port 57598
+1542440733264	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+JavaScript warning: https://music.naver.com/js/pkg_music.all.js?bv=20181115061904, line 1: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+1542442275373	Marionette	INFO	Stopped listening on port 57598
+1542442276631	Marionette	INFO	Stopped listening on port 57533
+1542442278584	Marionette	INFO	Stopped listening on port 56480
+1542442279586	Marionette	INFO	Stopped listening on port 56178
+1542442280843	Marionette	INFO	Stopped listening on port 55213
