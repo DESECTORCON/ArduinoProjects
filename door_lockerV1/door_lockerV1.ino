@@ -13,7 +13,7 @@ boolean lcd_backlight = true;
 
 int lockbutton = 5;
 
-int last_on = millis();
+unsigned long last_on = millis();
 
 byte semark[] = {
   B00100,
@@ -142,14 +142,20 @@ void backlight_on() {
   Serial.println(last_on);
   Serial.println("backlight status");
   Serial.println(lcd_backlight);
+  Serial.println("millis laston subtrack");
+  Serial.println((millis() - last_on));
 }
 
 void backlight_off() {
   lcd.noBacklight();
-  last_on = millis();
+  //  int last_on = millis();
   lcd_backlight = false;
   Serial.println("millis laston subtrack");
   Serial.println((millis() - last_on));
   Serial.println("backlgith status");
+  Serial.println(lcd_backlight);
+  Serial.println("laston");
+  Serial.println(last_on);
+  Serial.println("backlight status");
   Serial.println(lcd_backlight);
 }
