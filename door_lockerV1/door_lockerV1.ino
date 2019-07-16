@@ -14,6 +14,7 @@ boolean roomopen = false;
 boolean lcd_backlight = true;
 
 int lockbutton = 5;
+int bell = 6;
 int red = 2;
 int yellow = 3;
 int green = 4;
@@ -57,6 +58,7 @@ void setup()
 {
 
   pinMode(lockbutton, INPUT);
+  pinMode(bell, INPUT);
   locker.attach(A0);
   Serial.begin(9600);   // Initiate a serial communication
   SPI.begin();      // Initiate  SPI bus
@@ -78,8 +80,18 @@ void setup()
 }
 void loop()
 {
-  if (((millis() - last_on) > 15000) && (lcd_backlight)) {
-    backlight_off();
+  //  if (((millis() - last_on) > 15000) && (lcd_backlight) || digitalRead(bell) == HIGH || digitalRead(lockbtuuon) == HIGH) {
+  //    backlight_off();
+  //  }
+  backlight_checker();
+
+  if (digitalRead(bell) == HIGH) {
+    tone(A1, 208, 500);
+    delay(501);
+    noTone(A1);
+    tone(A1, 165, 500);
+    delay(501);
+    noTone(A1);
   }
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent())
@@ -135,9 +147,10 @@ void loop()
 
         break;
       }
-      if (((millis() - last_on) > 15000) && (lcd_backlight)) {
-        backlight_off();
-      }
+      //      if (((millis() - last_on) > 15000) && (lcd_backlight)) {
+      //        backlight_off();
+      //      }
+      backlight_checker();
     }
   }
 
@@ -196,4 +209,10 @@ void play_entry() {
   tone(A1, 523, 400);
   delay(300);
 
+}
+
+void backlight_checker() {
+  if (((millis() - last_on) > 15000) && (lcd_backlight) || digitalRead(bell) == HIGH || digitalRead(lockbutton) == HIGH) {
+    backlight_off();
+  }
 }
