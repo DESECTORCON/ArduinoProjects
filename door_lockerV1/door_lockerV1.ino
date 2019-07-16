@@ -1,3 +1,4 @@
+#include <Servo.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <SPI.h>
@@ -7,11 +8,15 @@
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
 LiquidCrystal_I2C lcd(0x3F, 16, 2);
+Servo locker;
 
 boolean roomopen = false;
 boolean lcd_backlight = true;
 
 int lockbutton = 5;
+int red = 2;
+int yellow = 3;
+int green = 4;
 
 unsigned long last_on = millis();
 
@@ -52,7 +57,7 @@ void setup()
 {
 
   pinMode(lockbutton, INPUT);
-
+  locker.attach(A0);
   Serial.begin(9600);   // Initiate a serial communication
   SPI.begin();      // Initiate  SPI bus
   mfrc522.PCD_Init();   // Initiate MFRC522
@@ -69,11 +74,11 @@ void setup()
   lcd.print(">>ROOM LOCKED<<");
   lcd.setCursor(0, 2);
   lcd.print("Card ID: ");
-
+  locker.write(180);
 }
 void loop()
 {
-  if (((millis() - last_on) > 5000) && (lcd_backlight)) {
+  if (((millis() - last_on) > 15000) && (lcd_backlight)) {
     backlight_off();
   }
   // Look for new cards
@@ -109,6 +114,7 @@ void loop()
     lcd.setCursor(0, 1);
     lcd.write(2);
     lcd.print(">>ROOM UNLOCKED<<");
+    locker.write(90);
     while (true) {
       if (digitalRead(lockbutton) == HIGH) {
         roomopen = false;
@@ -116,9 +122,10 @@ void loop()
         lcd.setCursor(0, 1);
         lcd.write(1);
         lcd.print(">>ROOM LOCKED<<");
+        locker.write(180);
         break;
       }
-      if (((millis() - last_on) > 5000) && (lcd_backlight)) {
+      if (((millis() - last_on) > 15000) && (lcd_backlight)) {
         backlight_off();
       }
     }
