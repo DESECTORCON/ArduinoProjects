@@ -73,6 +73,9 @@ void setup()
 }
 void loop()
 {
+  if (((millis() - last_on) > 5000) && (lcd_backlight)) {
+    backlight_off();
+  }
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent())
   {
@@ -81,10 +84,10 @@ void loop()
   // Select one of the cards
   if ( ! mfrc522.PICC_ReadCardSerial())
   {
-    backlight_on();
     return;
   }
   //Show UID on serial monitor
+  backlight_on();
   Serial.print("UID tag :");
   String content = "";
   byte letter;
@@ -115,7 +118,7 @@ void loop()
         lcd.print(">>ROOM LOCKED<<");
         break;
       }
-      if (((millis() - last_on) > 15000) && (lcd_backlight)) {
+      if (((millis() - last_on) > 5000) && (lcd_backlight)) {
         backlight_off();
       }
     }
@@ -125,11 +128,7 @@ void loop()
     Serial.println(" Access denied");
     delay(100);
   }
-  if (((millis() - last_on) > 15000) && (lcd_backlight)) {
-    backlight_off();
-  }
-  Serial.println((millis() - last_on));
-  Serial.println(lcd_backlight);
+
 
 }
 
@@ -137,9 +136,20 @@ void backlight_on() {
   lcd.backlight();
   last_on = millis();
   lcd_backlight = true;
+  Serial.println("millis");
+  Serial.println(millis());
+  Serial.println("laston");
+  Serial.println(last_on);
+  Serial.println("backlight status");
+  Serial.println(lcd_backlight);
 }
 
 void backlight_off() {
   lcd.noBacklight();
+  last_on = millis();
   lcd_backlight = false;
+  Serial.println("millis laston subtrack");
+  Serial.println((millis() - last_on));
+  Serial.println("backlgith status");
+  Serial.println(lcd_backlight);
 }
