@@ -7,19 +7,22 @@
 #define SS_PIN 10
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
-LiquidCrystal_I2C lcd(0x3F, 16, 2);
+LiquidCrystal_I2C lcd(0x3F, 20, 4);
 Servo locker;
 
 boolean roomopen = false;
 boolean lcd_backlight = true;
+boolean message = false;
 
 int lockbutton = 5;
 int bell = 6;
+int motion_sensor = 8;
 int red = 2;
 int yellow = 3;
 int green = 4;
 
 unsigned long last_on = millis();
+unsigned long last_message = millis();
 
 byte semark[] = {
   B00100,
@@ -59,6 +62,7 @@ void setup()
 
   pinMode(lockbutton, INPUT);
   pinMode(bell, INPUT);
+  pinMode(motion_sensor, INPUT);
   locker.attach(A0);
   Serial.begin(9600);   // Initiate a serial communication
   SPI.begin();      // Initiate  SPI bus
@@ -84,8 +88,15 @@ void loop()
   //    backlight_off();
   //  }
   backlight_checker();
+  message_clear();
+  if (digitalRead(motion_sensor) == HIGH) {
+    backlight_on();
+    lcd.setCursor(0, 3);
+    lcd.print(">Motion dected<");
+  }
 
   if (digitalRead(bell) == HIGH) {
+    backlight_on();
     tone(A1, 208, 500);
     delay(501);
     noTone(A1);
@@ -121,6 +132,12 @@ void loop()
   Serial.print("Message : ");
   content.toUpperCase();
 
+
+  lcd.setCursor(8, 2);
+  lcd.print(content.substring(1));
+  last_message = millis();
+  message = true;
+
   if (content.substring(1) == "EA 59 61 02") //change here the UID of the card/cards that you want to give access
   {
     Serial.println("Authorized access");
@@ -131,9 +148,17 @@ void loop()
     lcd.write(2);
     lcd.print(">>ROOM UNLOCKED<<");
     locker.write(90);
+    lcd.setCursor(8, 2);
+    lcd.print("           ");
 
 
     while (true) {
+      message_clear();
+      if (digitalRead(motion_sensor) == HIGH) {
+        backlight_on();
+        lcd.setCursor(0, 3);
+        lcd.print(">Motion dected<");
+      }
       if (digitalRead(lockbutton) == HIGH) {
         roomopen = false;
         backlight_on();
@@ -142,7 +167,7 @@ void loop()
         lcd.print(">>ROOM LOCKED<<");
         locker.write(180);
         tone(A1, 82, 100);
-        delay(101);
+        delay(101); noTone(A1);
         tone(A1, 82, 300);
 
         break;
@@ -156,16 +181,20 @@ void loop()
 
   else   {
     Serial.println(" Access denied");
-    lcd.setCursor(0, 3);
+    //    message = true;
+    //    last_message = millis();
+    lcd.setCursor(0, 1);
     lcd.write(1);
     lcd.print(">>Access denied<<");
     tone(A1, 330, 100);
     delay(101);
     tone(A1, 330, 500);
     delay(501);
-    lcd.setCursor(0, 3);
+    lcd.setCursor(0, 1);
     lcd.write(1);
     lcd.print(">>ROOM LOCKED<<");
+    lcd.setCursor(8, 2);
+    lcd.print("           ");
   }
 
 
@@ -201,18 +230,30 @@ void backlight_off() {
 
 void play_entry() {
   tone(A1, 262, 300);
-  delay(301);
+  delay(301); noTone(A1);
   tone(A1, 330, 300);
-  delay(301);
+  delay(301); noTone(A1);
   tone(A1, 392, 300);
-  delay(301);
+  delay(301); noTone(A1);
   tone(A1, 523, 400);
-  delay(300);
+  delay(300); noTone(A1);
 
 }
 
 void backlight_checker() {
-  if (((millis() - last_on) > 15000) && (lcd_backlight) || digitalRead(bell) == HIGH || digitalRead(lockbutton) == HIGH) {
+  if (((millis() - last_on) > 15000) && (lcd_backlight)) {
     backlight_off();
   }
+}
+
+void message_clear() {
+  if (message && (millis() - last_message > 3000)) {
+    message = false;
+    last_message = millis();
+    lcd.setCursor(0, 3);
+    lcd.print("                  ");
+    //        lcd.setCursor(0, 2);
+    //    lcd.print("                  ");
+  }
+
 }
