@@ -96,6 +96,7 @@ void loop()
   Serial.print("UID tag :");
   String content = "";
   byte letter;
+
   for (byte i = 0; i < mfrc522.uid.size; i++)
   {
     Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
@@ -103,18 +104,23 @@ void loop()
     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
     content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
+
   Serial.println();
   Serial.print("Message : ");
   content.toUpperCase();
+
   if (content.substring(1) == "EA 59 61 02") //change here the UID of the card/cards that you want to give access
   {
     Serial.println("Authorized access");
+    play_entry();
     Serial.println();
     roomopen = true;
     lcd.setCursor(0, 1);
     lcd.write(2);
     lcd.print(">>ROOM UNLOCKED<<");
     locker.write(90);
+
+
     while (true) {
       if (digitalRead(lockbutton) == HIGH) {
         roomopen = false;
@@ -123,6 +129,10 @@ void loop()
         lcd.write(1);
         lcd.print(">>ROOM LOCKED<<");
         locker.write(180);
+        tone(A1, 82, 100);
+        delay(101);
+        tone(A1, 82, 300);
+
         break;
       }
       if (((millis() - last_on) > 15000) && (lcd_backlight)) {
@@ -133,7 +143,16 @@ void loop()
 
   else   {
     Serial.println(" Access denied");
-    delay(100);
+    lcd.setCursor(0, 3);
+    lcd.write(1);
+    lcd.print(">>Access denied<<");
+    tone(A1, 330, 100);
+    delay(101);
+    tone(A1, 330, 500);
+    delay(501);
+    lcd.setCursor(0, 3);
+    lcd.write(1);
+    lcd.print(">>ROOM LOCKED<<");
   }
 
 
@@ -143,26 +162,38 @@ void backlight_on() {
   lcd.backlight();
   last_on = millis();
   lcd_backlight = true;
-  Serial.println("millis");
-  Serial.println(millis());
-  Serial.println("laston");
-  Serial.println(last_on);
-  Serial.println("backlight status");
-  Serial.println(lcd_backlight);
-  Serial.println("millis laston subtrack");
-  Serial.println((millis() - last_on));
+  //  Serial.println("millis");
+  //  Serial.println(millis());
+  //  Serial.println("laston");
+  //  Serial.println(last_on);
+  //  Serial.println("backlight status");
+  //  Serial.println(lcd_backlight);
+  //  Serial.println("millis laston subtrack");
+  //  Serial.println((millis() - last_on));
 }
 
 void backlight_off() {
   lcd.noBacklight();
   //  int last_on = millis();
   lcd_backlight = false;
-  Serial.println("millis laston subtrack");
-  Serial.println((millis() - last_on));
-  Serial.println("backlgith status");
-  Serial.println(lcd_backlight);
-  Serial.println("laston");
-  Serial.println(last_on);
-  Serial.println("backlight status");
-  Serial.println(lcd_backlight);
+  //  Serial.println("millis laston subtrack");
+  //  Serial.println((millis() - last_on));
+  //  Serial.println("backlgith status");
+  //  Serial.println(lcd_backlight);
+  //  Serial.println("laston");
+  //  Serial.println(last_on);
+  //  Serial.println("backlight status");
+  //  Serial.println(lcd_backlight);
+}
+
+void play_entry() {
+  tone(A1, 262, 300);
+  delay(301);
+  tone(A1, 330, 300);
+  delay(301);
+  tone(A1, 392, 300);
+  delay(301);
+  tone(A1, 523, 400);
+  delay(300);
+
 }
