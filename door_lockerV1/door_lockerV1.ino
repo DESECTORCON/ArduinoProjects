@@ -360,11 +360,11 @@ void check_distance() {
         Serial.println();
         play_entry();
 
-        roomopen = true;
+        roomopen = false;
         lcd.setCursor(0, 1);
         lcd.write(2);
-        lcd.print(">>ROOM UNLOCKED<<");
-        locker.write(90);
+        lcd.print(">>Retouch card<<");
+//        locker.write(90);
         lcd.setCursor(8, 2);
         lcd.print("           ");
 
