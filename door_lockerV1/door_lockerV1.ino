@@ -364,7 +364,7 @@ void check_distance() {
         lcd.setCursor(0, 1);
         lcd.write(2);
         lcd.print(">>Retouch card<<");
-//        locker.write(90);
+        //        locker.write(90);
         lcd.setCursor(8, 2);
         lcd.print("           ");
 
@@ -398,3 +398,55 @@ void check_distance() {
     }
   }
 }
+
+//void new_card() {
+//  if ( ! mfrc522.PICC_IsNewCardPresent())
+//  {
+//    
+//    return;
+//  }
+//  // Select one of the cards
+//  if ( ! mfrc522.PICC_ReadCardSerial())
+//  {
+//    return;
+//  }
+//  //Show UID on serial monitor
+//  backlight_on();
+//  Serial.print("UID tag :");
+//  String content = "";
+//  byte letter;
+//
+//  for (byte i = 0; i < mfrc522.uid.size; i++)
+//  {
+//    Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
+//    Serial.print(mfrc522.uid.uidByte[i], HEX);
+//    content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+//    content.concat(String(mfrc522.uid.uidByte[i], HEX));
+//  }
+//
+//  Serial.println();
+//  Serial.print("Message : ");
+//  content.toUpperCase();
+//
+//  message_clear();
+//  lcd.setCursor(8, 2);
+//  lcd.print(content.substring(1));
+//  last_message = millis();
+//  message = true;
+//
+//  if (content.substring(1) == "EA 59 61 02") //change here the UID of the card/cards that you want to give access
+//  {
+//    led_set(0, 0, 1);
+//    Serial.println("Authorized access");
+//    Serial.println();
+//    play_entry();
+//
+//    roomopen = true;
+//    lcd.setCursor(0, 1);
+//    lcd.write(2);
+//    lcd.print(">>ROOM UNLOCKED<<");
+//    locker.write(90);
+//    lcd.setCursor(8, 2);
+//    lcd.print("           ");
+//  }
+//

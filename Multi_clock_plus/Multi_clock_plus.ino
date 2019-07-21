@@ -51,7 +51,7 @@ void setup()
   pinMode(buttonPin, INPUT_PULLUP);
   pinMode(aPin, INPUT_PULLUP);
   pinMode(bPin, INPUT_PULLUP);
-  pinMode(button, INPUT_PULLUP);
+  pinMode(button, INPUT);
   Serial.begin(115200);
   display.begin(0x70);
   reset();
