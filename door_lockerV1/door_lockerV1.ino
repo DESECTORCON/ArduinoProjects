@@ -177,6 +177,17 @@ void loop()
         lcd.print(">Motion dected<");
       }
 
+
+      if (digitalRead(bell) == HIGH) {
+        backlight_on();
+        tone(A1, 208, 500);
+        delay(501);
+        noTone(A1);
+        tone(A1, 165, 500);
+        delay(501);
+        noTone(A1);
+      }
+
       if ((digitalRead(lockbutton) == HIGH) && (distance_now < 10)) {
         roomopen = false;
         backlight_on();
@@ -402,7 +413,7 @@ void check_distance() {
 //void new_card() {
 //  if ( ! mfrc522.PICC_IsNewCardPresent())
 //  {
-//    
+//
 //    return;
 //  }
 //  // Select one of the cards

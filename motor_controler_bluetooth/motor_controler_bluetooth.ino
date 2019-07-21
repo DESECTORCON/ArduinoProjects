@@ -53,19 +53,22 @@ void loop()
     }
     // if you get a newline, print the string, then the string's value:
     if (inChar == ' ' || inChar == '\n' || inChar == 'x') {
+      drive_speed = inString.toInt();
       Serial.print("Value:");
-      Serial.println(inString.toInt());
+      Serial.println(drive_speed);
       Serial.print("String: ");
       Serial.println(inString);
-      drive(inString.toInt());
+      drive(drive_speed);
       // clear the string for new input:
       inString = "";
     }
 
     if (inChar == 'm'){
+      motor_d = !motor_d;
       Serial.println("Motor directing changed.");
       Serial.print("Value:(true = forward || false = backward) ");
-      Serial.println(motor_d);      
+      Serial.println(motor_d); 
+      drive(drive_speed);     
     }
     
     Serial.println(message);
@@ -98,15 +101,15 @@ void loop()
 
 void drive(int speed)
 {
-  if (speed > 0 || motor_d)
+  if (motor_d)
   {
     analogWrite(enable1Pin, speed);
     digitalWrite(in1Pin, HIGH);
     digitalWrite(in2Pin, LOW);
   }
-  else if (speed < 0 || !motord)
+  if (!motor_d)
   {
-    analogWrite(enable1Pin,  -speed);
+    analogWrite(enable1Pin,  speed);
     digitalWrite(in1Pin, LOW);
     digitalWrite(in2Pin, HIGH);
   }
