@@ -3,7 +3,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <IRremoteInt.h>
 #include <IRremote.h>
-#define delay_time 480
+#define delay_time 510
 #define RECVP_PIN 10
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
