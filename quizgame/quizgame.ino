@@ -106,31 +106,31 @@ void loop()
     switch (lives)
     {
     case 8:
-      captionString = captionString + "////////";
+      captionString = captionString + "lives left:////////";
       break;
     case 7:
-      captionString = captionString + "/////// ";
+      captionString = captionString + "lives left://///// ";
       break;
     case 6:
-      captionString = captionString + "//////  ";
+      captionString = captionString + "lives left://////  ";
       break;
     case 5:
-      captionString = captionString + "/////   ";
+      captionString = captionString + "lives left://///   ";
       break;
     case 4:
-      captionString = captionString + "////    ";
+      captionString = captionString + "lives left:////    ";
       break;
     case 3:
-      captionString = captionString + "///     ";
+      captionString = captionString + "lives left:///     ";
       break;
     case 2:
-      captionString = captionString + "//      ";
+      captionString = captionString + "lives left://      ";
       break;
     case 1:
-      captionString = captionString + "/       ";
+      captionString = captionString + "lives left:/       ";
       break;
     case 0:
-      captionString = captionString + "        ";
+      captionString = captionString + "lives left:        ";
       gameon = false;
       lcd.setBackColor(179, 232, 21);
       lcd.setColor(51, 184, 135);
@@ -139,7 +139,8 @@ void loop()
       delay(5000);
       break;
     }
-    setCaption(captionString + score);
+    setCaption(captionString);
+    setCaption_iner(String(score));
     Serial.println("setting level...");
     Serial.print("currentlevel::");
     Serial.println(String(level));
@@ -500,7 +501,7 @@ void loop()
     Serial.println(gamecycle);
     Serial.println("---------DEBUGEND-------------");
 
-    lcd.setBackColor(random(255), random(255), random(255));
+    lcd.setBackColor(random(1, 140), random(1, 140), random(1, 140));
     lcd.setFont(BigFont);
     lcd.setColor(255, 255, 255);
     //    lcd.setBackColor(
@@ -508,7 +509,7 @@ void loop()
     //    );
     lcd.print("Whats, ", CENTER, 30);
     lcd.print(quiz, CENTER, 50);
-    lcd.setBackColor(random(255), random(255), random(255));
+    lcd.setBackColor(random(1, 140), random(1, 140), random(1, 140));
     lcd.setFont(SmallFont);
     lcd.print(String("1{" + String(chansor1) + " 2{" + String(chansor2) + " 3{" + String(chansor3) + " 4{" + String(chansor4)), 0, 80);
     //    lcd.print("1{" + String(chansor1), 0, 80);
@@ -521,7 +522,7 @@ void loop()
     {
       lcd.setColor(255, 255, 255);
       lcd.setFont(SmallFont);
-      lcd.print(String("Time left: " + String(countdowntime - (millis() - countdownstart))), 20, 115);
+      lcd.print(String("Time left: " + String((countdowntime - (millis() - countdownstart))/1000)), 20, 115);
       // Serial.print("string debug:::");
       // Serial.println("Time left: " + String(countdowntime - (millis() - countdownstart)));
       if ((millis() - countdownstart) > countdowntime)
@@ -575,13 +576,21 @@ void loop()
 }
 void setCaption(String caption)
 {
+  lcd.setFont(SmallFont);
   lcd.setColor(255, 0, 0);
-  lcd.fillRect(0, 0, 159, 13);
+  lcd.fillRect(0, 0, 159, 25);
   lcd.setColor(64, 64, 64);
   lcd.fillRect(0, 114, 159, 127);
   lcd.setColor(255, 255, 255);
   lcd.setBackColor(255, 0, 0);
   lcd.print(caption, CENTER, 1);
+}
+
+void setCaption_iner(String caption)
+{
+  lcd.setFont(SmallFont);
+  lcd.setColor(255,255,255);
+  lcd.print(caption, CENTER, 15);
 }
 
 void winscreen(int score_)
