@@ -81,16 +81,19 @@ void loop()
 
     lcd.clrScr();
     gamecycle++;
-    if (8 > gamecycle > 5)
+    if (gamecycle > 4)
     {
+      // Serial.print("asdf");
       level = 2;
     }
-    if (13 > gamecycle > 8)
+    if (gamecycle > 8)
     {
+      // Serial.print("asdfasdf");
       level = 3;
     }
     if (gamecycle > 13)
     {
+      // Serial.print("asdfasdfasdf");
       level = 4;
     }
     String captionString = "";
