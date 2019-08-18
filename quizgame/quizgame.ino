@@ -170,8 +170,9 @@ void loop()
       lcd.setFont(BigFont);
       lcd.print("GAME OVER!!", CENTER, CENTER);
       lcd.setColor(242, 61, 255);
+      lcd.setFont(SmallFont);
       lcd.print("Your Score:" + String(score), CENTER, CENTER + 50);
-      lcd.print("Reset in 5 seconds...", CENTER-20, CENTER);
+      lcd.print("Reset in 5 seconds...", CENTER-20, CENTER-20);
 
       delay(5000);
       break;
@@ -556,7 +557,7 @@ void loop()
     lcd.setBackColor(random(1, 140), random(1, 140), random(1, 140));
     lcd.setFont(SmallFont);
     lcd.print(String("1{" + String(chansor1) + " 2{" + String(chansor2)), 1, 70);
-    lcd.print(String(" 3{" + String(chansor3) + " 4{" + String(chansor4)), 60, 90);
+    lcd.print(String(" 3{" + String(chansor3) + " 4{" + String(chansor4)), 50, 90);
     //    lcd.print("1{" + String(chansor1), 0, 80);
     //    lcd.print("2{" + String(chansor2), 40, 80);
     //    lcd.print("3{" + String(chansor3), 85, 80);

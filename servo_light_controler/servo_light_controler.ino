@@ -84,31 +84,35 @@ void lightset (char MID, boolean stat) {
   if (MID == '1') {
     if (stat && !light1) {
       Serial.println("1 ON");
-      Mlight1.write(180);
+      Mlight1.write(125);
       delay(delay_time);
       Mlight1.write(90);
+      Mlight1.write(92);
       light1 = true;
 
     } else if (!stat && light1) {
       Serial.println("1 OFF");
-      Mlight1.write(0);
+      Mlight1.write(35);
       delay(delay_time);
       Mlight1.write(90);
+      Mlight1.write(88);
       light1 = false;
     }
   } else if (MID == '2') {
     if (stat && !light2) {
       Serial.println("2 ON");
-      Mlight2.write(0);
+      Mlight2.write(35);
       delay(delay_time);
       Mlight2.write(90);
+      Mlight1.write(88);
 
       light2 = true;
     } else if (!stat && light2) {
       Serial.println("2 OFF");
-      Mlight2.write(180);
+      Mlight2.write(125);
       delay(delay_time);
       Mlight2.write(90);
+      Mlight1.write(92);
       light2 = false;
     }
   }
@@ -132,49 +136,3 @@ void set_LCD(boolean light1, boolean light2) {
     lcd.print("OFF");
   }
 }
-
-//  Serial.println(analogRead(A5));
-//  delay(10);
-//    if (coupler > 800) {
-//      //        delay(500);
-//      for (int i = 0; i < 3; i++) {
-//        if (analogRead(A5) < 60) {
-//          break;
-//        }
-//        Serial.print("LOOPSTATUS:::");
-//        Serial.println(i);
-//        digitalWrite(13, HIGH);
-//        delay(100);
-//        digitalWrite(13, LOW);
-//        delay(100);
-//      }
-//      if (analogRead(A5) > 800) {
-//        Serial.println("ON");
-//        Mlight1.write(180);
-//        delay(delay_time);
-//        Mlight1.write(90);
-//
-//        while (true) {
-//          int coupler = analogRead(A5);
-//          if (coupler < 40) {
-//            //          delay(5000); ---25
-//            for (int i = 0; i < 5; i++) {
-//              if (analogRead(A5) > 800) {
-//                break;
-//              }
-//              Serial.print("LOOPSTATUS:::");
-//              Serial.println(i);
-//              digitalWrite(13, HIGH);
-//              delay(100);
-//              digitalWrite(13, LOW);
-//              delay(100);
-//            }
-//            if (analogRead(A5) < 60) {
-//              Serial.println("OFF");
-//              Mlight1.write(0);
-//              delay(delay_time);
-//              Mlight1.write(90);
-//              break;
-//            }
-//          }
-//        }

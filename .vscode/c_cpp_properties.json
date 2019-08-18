@@ -6,7 +6,9 @@
                 "/Applications/Arduino.app/Contents/Java/tools/**",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**",
                 "/Users/choeminjun/Documents/Arduino/libraries/**",
-                "/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0/tr1"
+                "/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0/tr1",
+                "/Applications/Arduino.app/Contents/Java/libraries/**",
+                "/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/include/ssp"
             ],
             "forcedInclude": [
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino/Arduino.h"
