@@ -81,15 +81,15 @@ void loop()
 
     lcd.clrScr();
     gamecycle++;
-    if (10 > gamecycle > 7)
+    if (8 > gamecycle > 5)
     {
       level = 2;
     }
-    else if (15 > gamecycle > 10)
+    if (13 > gamecycle > 8)
     {
       level = 3;
     }
-    else if (gamecycle > 16)
+    if (gamecycle > 13)
     {
       level = 4;
     }
@@ -138,6 +138,8 @@ void loop()
     }
     setCaption(captionString + score);
     Serial.println("setting level...");
+    Serial.print("currentlevel::");
+    Serial.println(String(level));
     switch (level)
     {
     case 1:
@@ -151,6 +153,10 @@ void loop()
     case 3:
       number1 = random(17);
       number2 = random(17);
+      break;
+    case 4:
+      number1 = random(20);
+      number2 = random(20);
       break;
     }
     Serial.println("setting operator...");
@@ -332,7 +338,7 @@ void loop()
           chansor1 = answer * random(1, 4);
           delay(50);
 
-          if (chansor4 == 0)
+          if (chansor1 == 0)
           {
             chansor1 = answer + random(1, 5);
           }
@@ -437,6 +443,10 @@ void loop()
         {
           Serial.println("3");
           chansor3 = answer * random(1, 5);
+          if (chansor3 == 0)
+          {
+            chansor3 = answer + random(1, 20);
+          }
           delay(50);
           Serial.println(chansor3);
           Serial.println(answer == chansor3);
@@ -506,14 +516,15 @@ void loop()
     unsigned long countdownstart = millis();
     while (true)
     {
-      lcd.setColor(255,244,233);
-      lcd.setFont(BigFont);
-      lcd.print("Time left: " + String(countdowntime - (millis() - countdownstart)), 5, 155);
-      Serial.print("string debug:::");
-      Serial.println("Time left: " + String(countdowntime - (millis() - countdownstart)));
-      if (millis() - countdownstart > countdowntime)
+      lcd.setColor(255, 255, 255);
+      lcd.setFont(SmallFont);
+      lcd.print(String("Time left: " + String(countdowntime - (millis() - countdownstart))), 20, 115);
+      // Serial.print("string debug:::");
+      // Serial.println("Time left: " + String(countdowntime - (millis() - countdownstart)));
+      if ((millis() - countdownstart) > countdowntime)
       {
-        lives = losescreen(answer, lives); break;
+        lives = losescreen(answer, lives);
+        break;
       }
 
       if (digitalRead(button1) || digitalRead(button2) || digitalRead(button3) || digitalRead(button4))
@@ -552,35 +563,6 @@ void loop()
         else
         {
           lives = losescreen(answer, lives);
-          // Serial.print("state::");
-          // Serial.println(digitalRead(button1) || digitalRead(button2) || digitalRead(button3) || digitalRead(button4));
-          // score = score - 1; Serial.println("loose");
-          // lives = lives - 1;
-
-          // lcd.setColor(255, 255, 255);
-          // lcd.setBackColor(209, 75, 75);
-          // lcd.setFont(BigFont);
-          // lcd.print("<WRONG!>", 10, 30);
-          // lcd.setFont(SmallFont);
-          // lcd.print("The answer was::", 20, 50);
-          // lcd.setColor(255, 0, 0);
-          // lcd.setBackColor(255, 255, 255);
-          // lcd.setFont(BigFont);
-          // lcd.print(String(answer), 60, 60);
-          // lcd.setFont(SmallFont);
-
-          // lcd.setBackColor(28, 64, 38);
-          // lcd.setColor(185, 236, 250);
-          // lcd.print(String(lives) + " lives left.", 40, 100);
-
-          // lcd.setFont(SmallFont);
-          // lcd.print("continue in 1 seconds...", 0, 80);
-
-          // for (int i = 1; i != 0; i--) {
-          //   lcd.print("continue in " + String(i) +  " seconds...", 0, 80);
-          //   delay(1000);
-          // }
-
           break;
         }
       }
