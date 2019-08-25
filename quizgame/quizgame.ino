@@ -172,13 +172,14 @@ void loop()
       lcd.setColor(242, 61, 255);
       lcd.setFont(SmallFont);
       lcd.print("Your Score:" + String(score), CENTER, CENTER + 50);
-      lcd.print("Reset in 5 seconds...", CENTER-20, CENTER-20);
+      lcd.print("Reset in 5 seconds...", CENTER - 20, CENTER - 20);
 
       delay(5000);
       break;
     }
 
-    if (!gameon){
+    if (!gameon)
+    {
       break;
     }
 
@@ -240,270 +241,50 @@ void loop()
 
       Serial.println("case0");
       chansor1 = answer;
-      chansor2 = answer - random(15);
+      
+      chansor2 = answerfinder(answer, 1);
+      
+      chansor3 = answerfinder(answer, 2);
 
-      while (true)
-      {
-        if (answer == chansor2)
-        {
-          Serial.println("1");
-          chansor2 = answer - random(15);
-          Serial.println(chansor2);
-          Serial.println(answer == chansor2);
-          delay(50);
-        }
-        else
-        {
-          Serial.println("1--esc");
-          break;
-        }
-      }
-      chansor3 = answer * random(1, 5);
-
-      while (true)
-      {
-        if (answer == chansor3)
-        {
-          Serial.println("2");
-          chansor3 = answer * random(1, 4);
-          delay(50);
-
-          if (chansor3 == 0)
-          {
-            chansor3 = answer + random(1, 5);
-          }
-
-          Serial.println(chansor3);
-          Serial.println(answer == chansor3);
-        }
-        else
-        {
-          Serial.println("2--esc");
-          break;
-        }
-      }
-      chansor4 = answer * random(1, 7);
-
-      while (true)
-      {
-        if (answer == chansor4)
-        {
-          Serial.println("3");
-          chansor4 = answer * random(1, 7);
-          delay(50);
-
-          if (chansor4 == 0)
-          {
-            chansor4 = answer - random(1, 5);
-          }
-
-          Serial.println(chansor4);
-          Serial.println(answer == chansor4);
-        }
-        else
-        {
-          break;
-        }
-      }
+      chansor4 = answerfinder(answer, 3);
       answernumber = 1;
       break;
 
     case 1:
       Serial.println("case1");
-      chansor1 = answer - random(15);
-      while (true)
-      {
-        if (answer == chansor1)
-        {
-          Serial.println("1");
-          chansor1 = answer - random(15);
-          delay(50);
-          Serial.println(chansor1);
-          Serial.println(answer == chansor1);
-        }
-        else
-        {
-          break;
-        }
-      }
+
+      chansor1 = answerfinder(answer, 1);
+
       chansor2 = answer;
-      chansor3 = answer * random(1, 4);
 
-      while (true)
-      {
-        if (answer == chansor3)
-        {
-          Serial.println("2");
-          chansor3 = answer * random(1, 5);
-          delay(50);
+      chansor3 = answerfinder(answer, 2);
 
-          if (chansor3 == 0)
-          {
-            chansor3 = answer - random(1, 5);
-          }
+      chansor4 = answerfinder(answer, 3);
 
-          Serial.println(chansor3);
-          Serial.println(answer == chansor3);
-        }
-        else
-        {
-          break;
-        }
-      }
-      chansor4 = answer * random(1, 7);
-
-      while (true)
-      {
-        if (answer == chansor4)
-        {
-          Serial.println("3");
-          chansor4 = answer * random(1, 15);
-          delay(50);
-
-          if (chansor4 == 0)
-          {
-            chansor4 = answer + random(1, 5);
-          }
-          Serial.println(chansor4);
-          Serial.println(answer == chansor4);
-        }
-        else
-        {
-          break;
-        }
-      }
       answernumber = 2;
       break;
     case 2:
       Serial.println("case2");
-      chansor1 = answer * random(1, 3);
 
-      while (true)
-      {
-        if (answer == chansor1)
-        {
-          Serial.println("1");
-          chansor1 = answer * random(1, 4);
-          delay(50);
+      chansor1 = answerfinder(answer, 1);
 
-          if (chansor1 == 0)
-          {
-            chansor1 = answer + random(1, 5);
-          }
-
-          Serial.println(chansor1);
-          Serial.println(answer == chansor1);
-        }
-        else
-        {
-          break;
-        }
-      }
-      chansor2 = answer - random(15);
-
-      while (true)
-      {
-        if (answer == chansor2)
-        {
-          Serial.println("2");
-          chansor2 = answer - random(15);
-          delay(50);
-          Serial.println(chansor2);
-          Serial.println(answer == chansor2);
-        }
-        else
-        {
-          break;
-        }
-      }
+      chansor2 = answerfinder(answer, 2);
       chansor3 = answer;
-      chansor4 = answer * random(1, 8);
 
-      while (true)
-      {
-        if (answer == chansor4)
-        {
-          Serial.println("3");
-          chansor4 = answer * random(1, 9);
-          delay(50);
-          if (chansor4 == 0)
-          {
-            chansor4 = answer - random(1, 5);
-          }
+      chansor4 = answerfinder(answer, 3);
 
-          Serial.println(chansor4);
-          Serial.println(answer == chansor4);
-        }
-        else
-        {
-          break;
-        }
-      }
       answernumber = 3;
       break;
 
     case 3:
       Serial.println("case3");
-      chansor1 = answer * random(1, 8);
+      
+      chansor1 = answerfinder(answer, 1);
 
-      while (true)
-      {
-        if (answer == chansor1)
-        {
-          Serial.println("1");
-          chansor1 = answer * random(1, 7);
-          delay(50);
+      chansor2 = answerfinder(answer, 2);
 
-          if (chansor1 == 0)
-          {
-            chansor1 = answer + random(1, 20);
-          }
-          Serial.println(chansor1);
-          Serial.println(answer == chansor1);
-        }
-        else
-        {
-          break;
-        }
-      }
-      chansor2 = answer - random(15);
+      chansor3 = answerfinder(answer, 3);
 
-      while (true)
-      {
-        if (answer == chansor2)
-        {
-          Serial.println("2");
-          chansor2 = answer - random(15);
-          delay(50);
-          Serial.println(chansor2);
-          Serial.println(answer == chansor2);
-        }
-        else
-        {
-          break;
-        }
-      }
-      chansor3 = answer * random(1, 3);
-
-      while (true)
-      {
-        if (answer == chansor3)
-        {
-          Serial.println("3");
-          chansor3 = answer * random(1, 5);
-          if (chansor3 == 0)
-          {
-            chansor3 = answer + random(1, 20);
-          }
-          delay(50);
-          Serial.println(chansor3);
-          Serial.println(answer == chansor3);
-        }
-        else
-        {
-          break;
-        }
-      }
       chansor4 = answer;
       answernumber = 4;
       break;
@@ -701,4 +482,38 @@ unsigned int losescreen(int answer, int lives)
     delay(1000);
   }
   return lives;
+}
+
+int answerfinder(int answer, int exnumber)
+{
+  int chansor = 1;
+  // chansor = answer - random(15);
+  while (true)
+  {
+    Serial.println(exnumber);
+    switch (random(1, 4))
+    {
+    case 1:
+      chansor = answer - random(20);
+      break;
+    case 2:
+      chansor = answer + random(20);
+      break;
+    case 3:
+      chansor = answer * random(1, 10);
+      break;
+    }
+    if (answer == chansor)
+    {
+      Serial.println(chansor);
+      Serial.println(answer == chansor);
+      delay(50);
+    }
+    else
+    {
+      Serial.println(String(answer) + "--esc");
+      break;
+    }
+  }
+  return chansor;
 }
