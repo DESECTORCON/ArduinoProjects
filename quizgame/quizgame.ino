@@ -74,7 +74,7 @@ void loop()
   lcd.clrScr();
 
   int score = 10;
-  unsigned int lives = 8;
+  unsigned int lives = 7;
   boolean gameon = true;
 
   setCaption("Quiz machine");
@@ -124,8 +124,19 @@ void loop()
     {
       // Serial.print("asdfasdfasdf");
       level = 4;
-      countdowntime = 2500;
+      // countdowntime = 2500;
     }
+    if (gamecycle > 16)
+    {
+      level = 5;
+      countdowntime = 7000;
+    }
+    if (gamecycle > 25)
+    {
+      level = 6;
+      countdowntime = 12000;
+    }
+
     String captionString = "";
     String operator_ = "";
     String quiz = "";
@@ -135,32 +146,29 @@ void loop()
     int number2;
     switch (lives)
     {
-    case 8:
-      captionString = captionString + "lives left:////////";
-      break;
     case 7:
-      captionString = captionString + "lives left://///// ";
+      captionString = captionString + "lives left:///////";
       break;
     case 6:
-      captionString = captionString + "lives left://////  ";
+      captionString = captionString + "lives left:////// ";
       break;
     case 5:
-      captionString = captionString + "lives left://///   ";
+      captionString = captionString + "lives left://///  ";
       break;
     case 4:
-      captionString = captionString + "lives left:////    ";
+      captionString = captionString + "lives left:////   ";
       break;
     case 3:
-      captionString = captionString + "lives left:///     ";
+      captionString = captionString + "lives left:///    ";
       break;
     case 2:
-      captionString = captionString + "lives left://      ";
+      captionString = captionString + "lives left://     ";
       break;
     case 1:
-      captionString = captionString + "lives left:/       ";
+      captionString = captionString + "lives left:/      ";
       break;
     case 0:
-      captionString = captionString + "lives left:        ";
+      captionString = captionString + "lives left:       ";
       gameon = false;
 
       lcd.setColor(21, 230, 104);
@@ -207,6 +215,12 @@ void loop()
       number1 = random(20);
       number2 = random(20);
       break;
+    case 5:
+      number1 = random(1, 25);
+      number1 = random(1, 25);
+    case 6:
+      number1 = random(1, 30);
+      number1 = random(1, 30);
     }
     Serial.println("setting operator...");
     switch (random(3))
@@ -241,9 +255,9 @@ void loop()
 
       Serial.println("case0");
       chansor1 = answer;
-      
+
       chansor2 = answerfinder(answer, 1);
-      
+
       chansor3 = answerfinder(answer, 2);
 
       chansor4 = answerfinder(answer, 3);
@@ -278,7 +292,7 @@ void loop()
 
     case 3:
       Serial.println("case3");
-      
+
       chansor1 = answerfinder(answer, 1);
 
       chansor2 = answerfinder(answer, 2);
@@ -349,12 +363,12 @@ void loop()
     {
       lcd.setColor(255, 255, 255);
       lcd.setFont(SmallFont);
-      lcd.print(String("Time left: " + String((countdowntime - (millis() - countdownstart)) / 1000)), 5, 115);
+      lcd.print(String("Time left:" + String((countdowntime - (millis() - countdownstart)) / 1000)), 5, 115);
       // Serial.print("string debug:::");
       // Serial.println("Time left: " + String(countdowntime - (millis() - countdownstart)));
       if ((millis() - countdownstart) > countdowntime)
       {
-        lives = losescreen(answer, lives);
+        lives = losescreen(answer, lives, score);
         break;
       }
 
@@ -366,14 +380,14 @@ void loop()
           score = score + 1;
           Serial.println("win");
 
-          winscreen(score);
+          winscreen(score, lives);
 
           break;
         }
         if (digitalRead(button2) && (answernumber == 2))
         {
           score = score + 1;
-          winscreen(score);
+          winscreen(score, lives);
           Serial.println("win");
           break;
         }
@@ -381,19 +395,19 @@ void loop()
         {
           score = score + 1;
           Serial.println("win");
-          winscreen(score);
+          winscreen(score, lives);
           break;
         }
         if (digitalRead(button4) && (answernumber == 4))
         {
           score = score + 1;
           Serial.println("win");
-          winscreen(score);
+          winscreen(score, lives);
           break;
         }
         else
         {
-          lives = losescreen(answer, lives);
+          lives = losescreen(answer, lives, score);
           break;
         }
       }
@@ -420,7 +434,7 @@ void setCaption_iner(String caption)
   lcd.print(caption, CENTER, 13);
 }
 
-void winscreen(int score_)
+void winscreen(int score_, int lives)
 {
   // clear_screen();
   lcd.setBackColor(72, 250, 223);
@@ -444,7 +458,7 @@ void winscreen(int score_)
     delay(1000);
   }
 }
-unsigned int losescreen(int answer, int lives)
+unsigned int losescreen(int answer, int lives, int score)
 {
   // clear_screen();
   lcd.setBackColor(252, 81, 81);
@@ -460,18 +474,20 @@ unsigned int losescreen(int answer, int lives)
   lcd.setColor(255, 255, 255);
   lcd.setBackColor(209, 75, 75);
   lcd.setFont(BigFont);
-  lcd.print("<WRONG!>", 10, 30);
+  lcd.print("<WRONG!>", 10, 10);
   lcd.setFont(SmallFont);
-  lcd.print("The answer was::", 20, 50);
+  lcd.print("The answer was::", 20, 30);
   lcd.setColor(255, 0, 0);
   lcd.setBackColor(255, 255, 255);
   lcd.setFont(BigFont);
-  lcd.print(String(answer), 60, 60);
+  lcd.print(String(answer), 60, 45);
   lcd.setFont(SmallFont);
 
+  lcd.setBackColor(242, 199, 80);
+  lcd.fillRoundRect(5,50, 150, 120);
   lcd.setBackColor(28, 64, 38);
   lcd.setColor(185, 236, 250);
-  lcd.print(String(lives) + " lives left.", 40, 100);
+  lcd.print(String(lives) + " lives left.", 40, 55);
 
   lcd.setFont(SmallFont);
   lcd.print("continue in 1 seconds...", 0, 80);
