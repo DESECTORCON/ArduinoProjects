@@ -1,7 +1,6 @@
 {
-    "port": "/dev/cu.usbserial-A104D6S9",
-    "board": "arduino:avr:mega",
-    "configuration": "cpu=atmega2560",
+    "port": "/dev/cu.usbmodem14201",
+    "board": "arduino:avr:uno",
     "programmer": "AVRISP mkII",
-    "sketch": "quizgame/quizgame.ino"
+    "sketch": "fanrotater/fanrotater.ino"
 }
