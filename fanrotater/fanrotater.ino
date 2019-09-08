@@ -8,6 +8,12 @@ int mode = 0;
 int timemode = 0;
 int sleeptime = 1000;
 int servodegrees = 10;
+
+int step1 = 0;
+int step2 = 0;
+int step3 = 0;
+int step4 = 0;
+
 unsigned long lastmillis = millis();
 boolean servo_direction = true;
 boolean servoon = true;
@@ -44,18 +50,21 @@ void loop()
         switch (mode)
         {
         case 0:
-            servodegrees = 10;
+            servodegrees = 12;
             break;
         case 1:
-            servodegrees = 50;
+            servodegrees = 48;
             break;
         case 2:
             servodegrees = 100;
             break;
         case 3:
-            servodegrees = 170;
+            servodegrees = 160;
             break;
         }
+        int divison_ = servodegrees / 4;
+        step1 = division;
+        setp2
         lcd_print(sleeptime, servodegrees, servoon);
         delay(100);
     }
@@ -90,29 +99,34 @@ void loop()
         delay(100);
     }
 
-    if ((millis() - lastmillis) >= sleeptime)
-    {
-        Serial.println("Movment");
-        Serial.print("--------------------");
-        servo_direction = !servo_direction;
-        lastmillis = millis();
-        delay(sleeptime);
-    }
-    if (servoon)
+    // if ((millis() - lastmillis) >= sleeptime)
+    // {
+    //     Serial.println("Movment");
+    //     Serial.print("--------------------");
+    //     servo_direction = !servo_direction;
+    //     lastmillis = millis();
+    //     delay(sleeptime);
+    // }
+    if (servoon && (millis() - lastmillis) > sleeptime)
     {
         if (servo_direction)
         {
             servo.write(servodegrees);
+            servo_direction = !servo_direction;
+            lastmillis = millis();
         }
         else
         {
             servo.write(90);
+            servo_direction = !servo_direction;
+            lastmillis = millis();
         }
     }
     else
     {
         servo.write(servo.read());
     }
+
     Serial.print("sleeptime:::");
 
     Serial.println(sleeptime);
@@ -132,7 +146,7 @@ void lcd_print(int sleeptime, int servodegrees, bool servoon)
     lcd.print("ServoD:");
     lcd.print(servodegrees);
 
-    lcd.print("|");
+    lcd.setCursor(0,3);
     lcd.print(" ServoOn:");
     lcd.print(servoon);
 }
