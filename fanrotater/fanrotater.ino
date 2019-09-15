@@ -22,23 +22,27 @@ void checkdegrees()
     if (digitalRead(buttonPin) == HIGH)
     {
         mode++;
-        if (mode >= 4)
+        if (mode >= 5)
         {
             mode = 0;
         }
+        servoon = true;
         switch (mode)
         {
         case 0:
-            servodegrees = 6;
+            servodegrees = 20;
             break;
         case 1:
-            servodegrees = 24;
+            servodegrees = 34;
             break;
         case 2:
-            servodegrees = 50;
+            servodegrees = 60;
             break;
         case 3:
-            servodegrees = 80;
+            servodegrees = 100;
+            break;
+        case 4:
+            servoon = false;
             break;
         }
         lcd_print(sleeptime, servodegrees, servoon);
@@ -50,33 +54,22 @@ void checksleep()
 {
     if (digitalRead(timebuttonpin) == HIGH)
     {
-        timemode++;
-        if (timemode >= 5)
+        sleeptime = sleeptime + 2;
+        if (sleeptime > 100)
         {
-            timemode = 0;
-        }
-        servoon = true;
-        switch (timemode)
-        {
-        case 0:
-            sleeptime = 1;
-            break;
-        case 1:
-            sleeptime = 5;
-            break;
-        case 2:
-            sleeptime = 15;
-            break;
-        case 3:
-            sleeptime = 30;
-            break;
-        case 4:
-            servoon = false;
-            break;
+            sleeptime = 10;
         }
         lcd_print(sleeptime, servodegrees, servoon);
         delay(100);
     }
+}
+TimedAction checkdegreesThread = TimedAction(110, checkdegrees);
+TimedAction checksleepThread = TimedAction(110, checksleep);
+
+void checkthread()
+{
+    checkdegreesThread.check();
+    checksleepThread.check();
 }
 
 void setup()
@@ -95,126 +88,35 @@ void setup()
 
 void loop()
 {
-    lcd_print(sleeptime, servodegrees, servoon);
-    // if (digitalRead(buttonPin) == HIGH)
-    // {
-    //     mode++;
-    //     if (mode >= 4)
-    //     {
-    //         mode = 0;
-    //     }
-    //     switch (mode)
-    //     {
-    //     case 0:
-    //         servodegrees = 6;
-    //         break;
-    //     case 1:
-    //         servodegrees = 24;
-    //         break;
-    //     case 2:
-    //         servodegrees = 50;
-    //         break;
-    //     case 3:
-    //         servodegrees = 80;
-    //         break;
-    //     }
-    //     lcd_print(sleeptime, servodegrees, servoon);
-    //     delay(100);
-    // }
-
-    // if (digitalRead(timebuttonpin) == HIGH)
-    // {
-    //     timemode++;
-    //     if (timemode >= 5)
-    //     {
-    //         timemode = 0;
-    //     }
-    //     servoon = true;
-    //     switch (timemode)
-    //     {
-    //     case 0:
-    //         sleeptime = 1;
-    //         break;
-    //     case 1:
-    //         sleeptime = 5;
-    //         break;
-    //     case 2:
-    //         sleeptime = 15;
-    //         break;
-    //     case 3:
-    //         sleeptime = 30;
-    //         break;
-    //     case 4:
-    //         servoon = false;
-    //         break;
-    //     }
-    //     lcd_print(sleeptime, servodegrees, servoon);
-    //     delay(100);
-    // }
-
-    // if ((millis() - lastmillis) >= sleeptime)
-    // {
-    //     Serial.println("Movment");
-    //     Serial.print("--------------------");
-    //     servo_direction = !servo_direction;
-    //     lastmillis = millis();
-    //     delay(sleeptime);
-    // }
-    // if (servoon && (millis() - lastmillis) > sleeptime)
-    // {
-    //     if (servo_direction)
-    //     {
-    //         // servo.write(servodegrees);
-
-    //         for (int i; servodegrees > i; i++)
-    //         {
-    //             servo.write(servo.read() + 2);
-    //         }
-
-    //         servo_direction = !servo_direction;
-    //         lastmillis = millis();
-    //     }
-    //     else
-    //     {
-    //         for (int i; servodegrees > i; i++)
-    //         {
-    //             servo.write(servo.read() - 2);
-    //         }
-    //         servo_direction = !servo_direction;
-    //         lastmillis = millis();
-    //     }
-    // }
-    // else
-    // {
-    //     servo.write(servo.read());
-    // }
-
-    if (servo_direction)
+    checkthread();
+    if (servoon)
     {
-        // servo.write(servodegrees);
-
-        for (int i = 0; servodegrees >= i; i++)
+        if (servo_direction)
         {
-            servo.write(servo.read() + 2);
-            delay(sleeptime);
-            Serial.println("Loop1");
-            Serial.println(i);
-        }
 
-        servo_direction = !servo_direction;
-        // lastmillis = millis();
+            for (int i = 0; servodegrees >= i; i++)
+            {
+                checkthread();
+                servo.write(servo.read() + 2);
+                delay(sleeptime);
+            }
+
+            servo_direction = !servo_direction;
+        }
+        else
+        {
+            for (int i = 0; servodegrees >= i; i++)
+            {
+                checkthread();
+                servo.write(servo.read() - 2);
+                delay(sleeptime);
+            }
+            servo_direction = !servo_direction;
+        }
     }
     else
     {
-        for (int i = 0; servodegrees >= i; i++)
-        {
-            servo.write(servo.read() - 2);
-            delay(sleeptime);
-            Serial.println("Loop1");
-            Serial.println(i);
-        }
-        servo_direction = !servo_direction;
-        // lastmillis = millis();
+        servo.write(servo.read());
     }
 
     Serial.print("sleeptime:::");
@@ -229,9 +131,13 @@ void loop()
 void lcd_print(int sleeptime, int servodegrees, bool servoon)
 {
     lcd.setCursor(0, 1);
+    lcd.print("                   ");
+    lcd.setCursor(0, 1);
     lcd.print("Sleeptime:");
     lcd.print(sleeptime);
 
+    lcd.setCursor(0, 2);
+    lcd.print("                   ");
     lcd.setCursor(0, 2);
     lcd.print("ServoD:");
     lcd.print(servodegrees);
