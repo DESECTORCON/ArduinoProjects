@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "/Volumes/choeminjunProgramDisk/ArduinoProjects"
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.osx": {
+			"PATH": "/Users/choeminjun/.platformio/penv/bin:/Users/choeminjun/.platformio/penv:/Library/Frameworks/Python.framework/Versions/3.7/bin:/opt/local/bin:/opt/local/sbin:/anaconda/bin:/Users/choeminjun/anaconda/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin",
+			"PLATFORMIO_CALLER": "vscode"
+		}
+	}
+}
