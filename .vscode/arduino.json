@@ -1,7 +1,7 @@
 {
-    "port": "/dev/cu.usbmodem14201",
+    "port": "/dev/cu.usbserial-AC01RUCV",
     "board": "arduino:avr:nano",
     "programmer": "AVRISP mkII",
-    "sketch": "RCCAR/rccar.ino",
-    "configuration": "cpu=atmega328old"
+    "sketch": "multiduino/multiduino.ino",
+    "configuration": "cpu=atmega328"
 }

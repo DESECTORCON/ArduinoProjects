@@ -1,4 +1,4 @@
-memo#include <Adafruit_BME280.h>
+#include <Adafruit_BME280.h>
 #include <UTFT.h>
 #define ALTITUDE 216.0
 // Declare which fonts we will be using
