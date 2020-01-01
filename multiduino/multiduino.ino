@@ -51,7 +51,7 @@ const int led7 = A2;
 const int led8 = A1;
 const int led9 = A0;
 
-int ledpins = {led1 ,led2,led3,led4,led5,led6,led7,led8,led9};
+int ledpins[] = {led1 ,led2,led3,led4,led5,led6,led7,led8,led9};
 
 
 ////////////////////////////////
@@ -126,20 +126,18 @@ float dust_get() {
 }
 ///////////////////////////////
 
-void led_con(bool one, bool two, bool three, int four, int five, int six, int seven, int eight, int nine){
-  digitalWrite(one, HIGH);
-  digitalWrite(two, HIGH);
-  digitalWrite(three, HIGH);
-  digitalWrite(, HIGH);
-  digitalWrite(one, HIGH);
-  digitalWrite(one, HIGH);
-  digitalWrite(one, HIGH);
-  digitalWrite(one, HIGH);
-  digitalWrite(one, HIGH);
+// void led_con(bool one, bool two, bool three, int four, int five, int six, int seven, int eight, int nine){
+//   digitalWrite(one, HIGH);
+//   digitalWrite(two, HIGH);
+//   digitalWrite(three, HIGH);
+//   digitalWrite(, HIGH);
+//   digitalWrite(one, HIGH);
+//   digitalWrite(one, HIGH);
+//   digitalWrite(one, HIGH);
+//   digitalWrite(one, HIGH);
+//   digitalWrite(one, HIGH);
 
-}
-
-
+// }
 void setup()
 {
     Serial.begin(9600);
@@ -175,6 +173,10 @@ void setup()
 void loop()
 {
     if (power_stat){
+        lcd.backlight();
+        lcd.setCursor(0,0);
+        lcd.print("** ULTIDUINO **");
+
         temperature = bme.readTemperature();
         humidity = bme.readHumidity();
         pressure = bme.readPressure();
@@ -182,25 +184,30 @@ void loop()
         pressure = pressure / 100.0F;
         float dust = dust_get();
 
-        lcd.setCursor(0,1);
-        lcd.print(" humidity:");
+        lcd.setCursor(1,1);
+        lcd.print("humidity:");
         lcd.print(humidity);
         
-        lcd.setCursor(0,2);
-        lcd.print(" temperature:");
+        lcd.setCursor(1,2);
+        lcd.print("temperature:");
         lcd.print(temperature);
 
-        lcd.setCursor(0,3);
-        lcd.print(" dust:");
+        lcd.setCursor(1,3);
+        lcd.print("dust:");
         lcd.print(dust);
 
         if (index == 1){
             lcd.setCursor(0,1);
             lcd.print("*");
-            int val = map(humidity, 0, 1, 100, 9);
+            lcd.setCursor(0,2);
+            lcd.print(" ");
+            lcd.setCursor(0,3);
+            lcd.print(" ");
+          
+            int val = map(humidity, 0, 100, 0, 8);
             Serial.println(val);
 
-            for (int i = 0; i == 9; i++)
+            for (int i = 0; i == val; i++)
             {
               digitalWrite(ledpins[i], HIGH);
             }
@@ -209,33 +216,43 @@ void loop()
         }
 
         if (index == 2){
+            lcd.setCursor(0,1);
+            lcd.print(" ");
             lcd.setCursor(0,2);
             lcd.print("*");
-            int val = map(temperature, 0, 1, 100, 9);
+            lcd.setCursor(0,3);
+            lcd.print(" ");
+            
+            int val = map(temperature, 0, 100, 0, 8);
             Serial.println(val);
 
-            for (int i = 0; i == 9; i++)
+            for (int i = 0; i == val; i++)
             {
               digitalWrite(ledpins[i], HIGH);
             }
         }
 
         if (index == 3){
+            lcd.setCursor(0,1);
+            lcd.print(" ");
+            lcd.setCursor(0,2);
+            lcd.print(" ");
             lcd.setCursor(0,3);
             lcd.print("*");
-            int val = map(dust, 0, 1, 250, 9);
+            
+            int val = map(dust, 0, 250, 0, 8);
             Serial.println(val);
 
-            for (int i = 0; i == 9; i++)
+            for (int i = 0; i == val; i++)
             {
               digitalWrite(ledpins[i], HIGH);
             }
         }
 
-        delay(50);
+        delay(10);
     }
     else {
-      lcd.backlight();
+      lcd.noBacklight();
       lcd.clear();
       
     }
