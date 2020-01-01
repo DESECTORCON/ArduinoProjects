@@ -195,7 +195,8 @@ void loop()
         lcd.setCursor(1,3);
         lcd.print("dust:");
         lcd.print(dust);
-
+        // temperature = Serial.read();
+        // dust = Serial.read();
         if (index == 1){
             lcd.setCursor(0,1);
             lcd.print("*");
@@ -204,12 +205,17 @@ void loop()
             lcd.setCursor(0,3);
             lcd.print(" ");
           
-            int val = map(humidity, 0, 100, 0, 8);
-            Serial.println(val);
+            int val = map(int(humidity), 0, 100, 0, 8);
+            // Serial.println(val);
 
-            for (int i = 0; i == val; i++)
+            for (int i = 0; i <= val; i++)
             {
               digitalWrite(ledpins[i], HIGH);
+              Serial.println(ledpins[i]);
+            }
+
+            for (int i = 8; i > val; i--){
+              digitalWrite(ledpins[i], LOW);
             }
             
             
@@ -223,12 +229,17 @@ void loop()
             lcd.setCursor(0,3);
             lcd.print(" ");
             
-            int val = map(temperature, 0, 100, 0, 8);
-            Serial.println(val);
+            int val = map(int(temperature), 0, 80, 0, 8);
+            // Serial.println(val);
 
-            for (int i = 0; i == val; i++)
+            for (int i = 0; i <= val; i++)
             {
               digitalWrite(ledpins[i], HIGH);
+              Serial.println(ledpins[i]);
+            }
+
+            for (int i = 8; i > val; i--){
+              digitalWrite(ledpins[i], LOW);
             }
         }
 
@@ -240,12 +251,17 @@ void loop()
             lcd.setCursor(0,3);
             lcd.print("*");
             
-            int val = map(dust, 0, 250, 0, 8);
-            Serial.println(val);
+            int val = map(int(dust), 0, 250, 0, 8);
+            // Serial.println(val);
 
-            for (int i = 0; i == val; i++)
+            for (int i = 0; i <= val; i++)
             {
               digitalWrite(ledpins[i], HIGH);
+              Serial.println(ledpins[i]);
+            }
+
+            for (int i = 8; i > val; i--){
+              digitalWrite(ledpins[i], LOW);
             }
         }
 
