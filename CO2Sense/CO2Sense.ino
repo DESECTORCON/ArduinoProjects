@@ -19,32 +19,92 @@
 
 Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 
-#define SLEEP		53
-#define	VI 			51
+long pwm_width = 0;
+long co2			 = 0;
+
+long history[290];
 
 void setup(void) {
 	Serial.begin(9600);
+	randomSeed(analogRead(A11));							// TODO debug
 
   tft.reset();
   uint16_t identifier = tft.readID();
   tft.begin(identifier);
 	tft.setRotation(3);	
-	tft.fillScreen(WHITE);
-	tft.setCursor(25,10);
-	tft.setTextColor(BLACK);
-	tft.setTextSize(4);
-	tft.print("Current CO2");
-	tft.setTextColor(GREEN);									// This should be changed as the read value from sensor
-	tft.setTextSize(6);
-	tft.setCursor(25,45);
-	tft.print(" ");
-	tft.print("500");
-	tft.setTextSize(3);
-	tft.println("ppm");
-	
-	tft.sendrawdata8(0x53, 0b00101100);
-	tft.sendrawdata8(0x51, 0x01);
+
+	for (int i=0;i<290;i++)
+	{
+		history[i] = 0;
+	}
 }
 
 void loop(void) {
+	tft.fillScreen(WHITE);
+	tft.setCursor(10,10);
+	tft.setTextColor(BLACK);
+	tft.setTextSize(3);
+	tft.print("Current CO2");
+																							// TODO sensor pwm width to co2 value convertion logic
+	co2 = random(400, 5000);										// TODO debug
+	for (long i=0;i < 290;i++){
+		history[i] = history[i+1];	
+	}
+	history[289] = co2;
+
+	tft.setTextColor(GREEN);
+	tft.setTextSize(6);
+	tft.setCursor(10,40);
+	tft.print(co2);
+	tft.setTextSize(3);
+	tft.println("ppm");
+
+	tft.drawLine(20, 230, 310, 230, BLACK);
+	tft.drawLine(20, 230, 20, 100, BLACK);
+	tft.setTextColor(RED);
+	tft.setTextSize(1);
+	tft.setCursor(0,100);
+	tft.print("5000");
+	tft.drawLine(20, 100, 310, 100, tft.color565(255,186,186));
+	tft.setCursor(0,165);
+	tft.print("2700");
+	tft.drawLine(20, 165, 310, 165, tft.color565(255,218,186));
+	tft.setCursor(0,202);
+	tft.setTextColor(tft.color565(201,209,48));
+	tft.print("1400");
+	tft.drawLine(20, 202, 310, 202, tft.color565(250,255,201));
+	tft.setCursor(0,216);
+	tft.print("900");
+	tft.drawLine(20, 216, 310, 216, tft.color565(224,255,201));
+	tft.setCursor(0,223);
+	tft.setTextColor(tft.color565(39,207,50));
+	tft.print("650");
+	tft.drawLine(20, 223, 310, 223, tft.color565(201,255,207));
+	tft.setCursor(0,230);
+	tft.setTextColor(BLUE);
+	tft.print("400");
+	tft.drawLine(20, 230, 310, 230, tft.color565(201,243,255));
+	
+	for (long i=0;i<290;i++){
+		if (history[i] > 2700){
+			tft.drawPixel(map(i, 0, 289, 310,20), map(history[i], 0, 5000, 240, 100), tft.color565(87,0,0));
+		}
+		else if (history[i] > 1400){
+			tft.drawPixel(map(i, 0, 289, 310,20), map(history[i], 0, 5000, 240, 100), RED);
+		}
+		else if (history[i] > 1000){
+			tft.drawPixel(map(i, 0, 289, 310,20), map(history[i], 0, 5000, 240, 100), tft.color565(201,209,48));
+		}
+		else if (history[i] > 650){
+			tft.drawPixel(map(i, 0, 289, 310,20), map(history[i], 0, 5000, 240, 100), GREEN);
+	}
+		else {
+			tft.drawPixel(map(i, 0, 289, 310,20), map(history[i], 0, 5000, 240, 100), BLUE);
+		}
+		
+	}
+	
+	tft.fillRoundRect(200, 40, 300, 60, 1, tft.color565(128,128,128));
+	
+	delay(700);															// TODO debug - should be one minute at deploy	
 }
