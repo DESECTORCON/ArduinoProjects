@@ -21,6 +21,10 @@ Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 
 long pwm_width = 0;
 long co2			 = 0;
+float temp		 = 0;
+float humidity = 0;
+float heatindex= 0;
+long  gas			 = 0;
 
 long history[290];
 
@@ -37,6 +41,7 @@ void setup(void) {
 	{
 		history[i] = 0;
 	}
+		
 }
 
 void loop(void) {
@@ -47,13 +52,23 @@ void loop(void) {
 	tft.print("Current CO2");
 																							// TODO sensor pwm width to co2 value convertion logic
 	co2 = random(400, 5000);										// TODO debug
+	humidity = random(0,100);
+	temp    = random(10,40);										// If over these temps, dont run fill rect part
 	for (long i=0;i < 290;i++){
 		history[i] = history[i+1];	
 	}
 	history[289] = co2;
-
-	tft.setTextColor(GREEN);
-	tft.setTextSize(6);
+	
+	if (co2 > 2700){
+		tft.setTextColor(RED);
+	} else if (co2 > 1000) {
+		tft.setTextColor(tft.color565(201,209,48));
+	} else if (co2 > 650)	{
+		tft.setTextColor(GREEN);
+	} else {
+		tft.setTextColor(BLUE);
+	}
+	tft.setTextSize(5);
 	tft.setCursor(10,40);
 	tft.print(co2);
 	tft.setTextSize(3);
@@ -105,6 +120,36 @@ void loop(void) {
 	}
 	
 	tft.fillRoundRect(200, 40, 300, 60, 1, tft.color565(128,128,128));
+
+	tft.drawRect(210, 45, 80,10, WHITE);
+	tft.fillRect(210, 45, (int)map((int)temp, 10, 40, 0,80),10, 
+							tft.color565((int)map((int)temp, 10, 40, 0, 255), 0, (int)map((int)temp, 10, 40, 255, 0)));
+	tft.setCursor(205, 48);
+	tft.setTextColor(WHITE);
+	tft.setTextSize(1);
+	tft.print("T:");
+	tft.print("   ");
+	tft.print(temp);
+	tft.print(" C");
 	
-	delay(700);															// TODO debug - should be one minute at deploy	
+	tft.drawRect(210, 56, 80,10, WHITE);
+	tft.fillRect(210, 56, (int)map((int)humidity, 0, 100, 0, 80),10, 
+							tft.color565((int)cos(map((int)humidity, 0, 100, 0, 2*PI)+1)*255, 0, 
+							(int)(-cos(map((int)humidity, 0, 100, 0, 2*PI))+1)*255));	
+	tft.setCursor(205, 58);
+	tft.setTextColor(WHITE);
+	tft.setTextSize(1);
+	tft.print("H:");
+	tft.print("   ");
+	tft.print(humidity);
+	tft.print(" %");
+	
+	tft.setCursor(205, 78);
+	tft.setTextColor(WHITE);
+	tft.setTextSize(1);
+	tft.print("G:");
+	tft.print(" ");
+	tft.print(gas);
+	//delay(60000);															// TODO debug - should be one minute at deploy	
+	delay(1000);
 }
