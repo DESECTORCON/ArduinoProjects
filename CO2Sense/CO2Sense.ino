@@ -1,5 +1,6 @@
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_TFTLCD.h> // Hardware-specific library
+#include "DHT.h"
 #define LCD_CS A3 // Chip Select goes to Analog 3
 #define LCD_CD A2 // Command/Data goes to Analog 2
 #define LCD_WR A1 // LCD Write goes to Analog 1
@@ -17,20 +18,25 @@
 #define YELLOW  0xFFE0
 #define WHITE   0xFFFF
 
+#define CO2PWM 2
+
 Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 
-long pwm_width = 0;
-long co2			 = 0;
+DHT dht(3, DHT22);
+
+volatile unsigned long rosetime = 0;
+volatile unsigned long falltime = 0;
+
+volatile unsigned long co2			 = 0;
 float temp		 = 0;
 float humidity = 0;
 float heatindex= 0;
-long  gas			 = 0;
+unsigned long  gas			 = 0;
 
-long history[290];
+unsigned long history[290];
 
 void setup(void) {
-	Serial.begin(9600);
-	randomSeed(analogRead(A11));							// TODO debug
+	//randomSeed(analogRead(A11));							// TODO debug
 
   tft.reset();
   uint16_t identifier = tft.readID();
@@ -41,24 +47,34 @@ void setup(void) {
 	{
 		history[i] = 0;
 	}
-		
+	pinMode(CO2PWM, INPUT);
+	attachInterrupt(digitalPinToInterrupt(CO2PWM), getwave, CHANGE);									// Added
+	dht.begin();
 }
 
 void loop(void) {
-	tft.fillScreen(WHITE);
-	tft.setCursor(10,10);
-	tft.setTextColor(BLACK);
-	tft.setTextSize(3);
-	tft.print("Current CO2");
-																							// TODO sensor pwm width to co2 value convertion logic
-	co2 = random(400, 5000);										// TODO debug
-	humidity = random(0,100);
-	temp    = random(10,40);										// If over these temps, dont run fill rect part
+																						// TODO sensor pwm width to co2 value convertion logic
+	//co2 = random(400, 5000);										// TODO debug
+	//humidity = random(0,100);
+	//temp    = random(10,40);										// If over these temps, dont run fill rect part
+		
+	temp = dht.readTemperature(false, false);
+	humidity = dht.readHumidity(false);
+	gas = analogRead(A8);
+	if (isnan(temp)|isnan(humidity)|temp<10|temp>40|humidity<0|humidity>100|co2<0|co2>5000){	
+		return;
+	}
 	for (long i=0;i < 290;i++){
 		history[i] = history[i+1];	
 	}
 	history[289] = co2;
 	
+	tft.fillScreen(WHITE);
+	tft.setCursor(10,10);
+	tft.setTextColor(BLACK);
+	tft.setTextSize(3);
+	tft.print("Current CO2");
+		
 	if (co2 > 2700){
 		tft.setTextColor(RED);
 	} else if (co2 > 1000) {
@@ -151,5 +167,15 @@ void loop(void) {
 	tft.print(" ");
 	tft.print(gas);
 	//delay(60000);															// TODO debug - should be one minute at deploy	
-	delay(1000);
+	delay(2000);
+}
+
+void getwave(){
+	int state = digitalRead(CO2PWM);
+	if (state == 1) {
+		rosetime = millis();
+	} else {
+		falltime = millis();
+		co2 = (falltime - rosetime - 2) * 5;
+	}	
 }
