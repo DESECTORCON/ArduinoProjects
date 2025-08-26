@@ -19,10 +19,12 @@
 #define WHITE   0xFFFF
 
 #define CO2PWM 2
+#define halt 21
+#define dhtport  3	
 
 Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 
-DHT dht(3, DHT22);
+DHT dht(dhtport, DHT22);
 
 volatile unsigned long rosetime = 0;
 volatile unsigned long falltime = 0;
@@ -36,8 +38,6 @@ unsigned long  gas			 = 0;
 unsigned long history[290];
 
 void setup(void) {
-	//randomSeed(analogRead(A11));							// TODO debug
-
   tft.reset();
   uint16_t identifier = tft.readID();
   tft.begin(identifier);
@@ -48,20 +48,20 @@ void setup(void) {
 		history[i] = 0;
 	}
 	pinMode(CO2PWM, INPUT);
+	pinMode(halt, INPUT_PULLUP);
+	delay(10);
 	attachInterrupt(digitalPinToInterrupt(CO2PWM), getwave, CHANGE);									// Added
+	attachInterrupt(digitalPinToInterrupt(halt), hhalt, FALLING);
 	dht.begin();
 }
 
 void loop(void) {
-																						// TODO sensor pwm width to co2 value convertion logic
-	//co2 = random(400, 5000);										// TODO debug
-	//humidity = random(0,100);
-	//temp    = random(10,40);										// If over these temps, dont run fill rect part
-		
 	temp = dht.readTemperature(false, false);
 	humidity = dht.readHumidity(false);
 	gas = analogRead(A8);
 	if (isnan(temp)|isnan(humidity)|temp<10|temp>40|humidity<0|humidity>100|co2<0|co2>5000){	
+		tft.setTextSize(4);
+		tft.print("Sense ERROR");
 		return;
 	}
 	for (long i=0;i < 290;i++){
@@ -166,8 +166,8 @@ void loop(void) {
 	tft.print("G:");
 	tft.print(" ");
 	tft.print(gas);
-	//delay(60000);															// TODO debug - should be one minute at deploy	
-	delay(2000);
+	delay(30000);															// TODO debug - should be one minute at deploy	
+	//delay(2000);
 }
 
 void getwave(){
@@ -178,4 +178,14 @@ void getwave(){
 		falltime = millis();
 		co2 = (falltime - rosetime - 2) * 5;
 	}	
+}
+
+void hhalt()
+{
+	int pins[14] = {22,23,24,25,26,27,28,29,3, A0,A1,A2,A3,A4};
+	for (int i=0;i<14;i++)
+	{
+		pinMode(pins[i], INPUT);
+	}
+	while (true){}
 }
